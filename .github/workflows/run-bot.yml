@@ -1,0 +1,27 @@
+name: Run Kalman Filter
+
+# This allows you to click a button to run the script whenever you want
+on:
+  workflow_dispatch: 
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Grab the code from your repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # Step 2: Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      # Step 3: Install yfinance, pandas, etc.
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
+      # Step 4: Run your trading bot!
+      - name: Run script
+        run: python main.py
