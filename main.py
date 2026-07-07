@@ -72,8 +72,22 @@ def run_live_market_bot(ticker_symbol, deviation_threshold=1.5):
                     
                     if live_price > upper_band:
                         signal = "SHORT 🔴"
+                        if current_position == 1: 
+                            trading_client.close_all_positions(cancel_orders=True) # Closes everything
+                            action_taken = "CLOSED LONG POSITION"
+                            current_position = 0
                     elif live_price < lower_band:
                         signal = "LONG  🟢"
+                        if current_position <= 0:
+                            order = MarketOrderRequest(
+                                symbol="BTC/USD", # Alpaca requires a slash for Crypto pairs
+                                notional=1000,    # Buy exactly $1,000 worth of Bitcoin
+                                side=OrderSide.BUY,
+                                time_in_force=TimeInForce.GTC
+                            )
+                            trading_client.submit_order(order)
+                            action_taken = "EXECUTED BUY"
+                            current_position = 1
                     else:
                         signal = "HOLD  ⚪"
                         
@@ -88,4 +102,4 @@ def run_live_market_bot(ticker_symbol, deviation_threshold=1.5):
 
 if __name__ == "__main__":
     # Tracks Apple (AAPL) by default all day
-    run_live_market_bot("AAPL", deviation_threshold=1.5)
+    run_live_market_bot("BTC-USD", deviation_threshold=1.0)
