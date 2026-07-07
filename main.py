@@ -55,7 +55,7 @@ def run_live_market_bot(ticker_symbol, deviation_threshold=1.5):
         
         try:
             # Fetch the most recent 1-minute bars
-            df = ticker.history(period="1d", interval="1m")
+            df = ticker.history(period="6d", interval="15m")
             if not df.empty:
                 latest_row = df.iloc[-1]
                 latest_timestamp = df.index[-1]
@@ -84,7 +84,7 @@ def run_live_market_bot(ticker_symbol, deviation_threshold=1.5):
             print(f"Error fetching data: {e}. Retrying...")
             
         # Wait 60 seconds before pulling the market price again
-        time.sleep(60) 
+        time.sleep(900) 
 
 if __name__ == "__main__":
     # Tracks Apple (AAPL) by default all day
