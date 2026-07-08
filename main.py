@@ -119,8 +119,8 @@ def run_live_market_bot(ticker_symbol, deviation_threshold=1.0):
             print(f"Error fetching data: {e}. Retrying...")
             
         # Wait 15 minutes (900 seconds) before performing the next check
-        time.sleep(900) 
+        time.sleep(300) 
 
 if __name__ == "__main__":
-    # Tracks Bitcoin (BTC-USD) with a 1.0 deviation threshold
-    run_live_market_bot("HDFCBANK", deviation_threshold=1.0)
+    # Tracks Bitcoin (BTC-USD) with a 1.4 deviation threshold
+    run_live_market_bot("HDFCBANK.NS", deviation_threshold=1.4)
