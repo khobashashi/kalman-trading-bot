@@ -123,4 +123,4 @@ def run_live_market_bot(ticker_symbol, deviation_threshold=1.0):
 
 if __name__ == "__main__":
     # Tracks Bitcoin (BTC-USD) with a 1.0 deviation threshold
-    run_live_market_bot("BTC-USD", deviation_threshold=1.0)
+    run_live_market_bot("HDFCBANK", deviation_threshold=1.0)
