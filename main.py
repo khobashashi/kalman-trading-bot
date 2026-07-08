@@ -44,7 +44,7 @@ def run_live_market_bot(ticker_symbol, deviation_threshold=1.0):
     
     ticker = yf.Ticker(ticker_symbol)
     
-    initial_df = ticker.history(period="1d", interval="1m")
+    initial_df = ticker.history(period="3d", interval="1m")
     if initial_df.empty:
         print("Market appears to be closed or no data. Initializing fallback.")
         last_price = ticker.fast_info.get('lastPrice', 63000.0) 
